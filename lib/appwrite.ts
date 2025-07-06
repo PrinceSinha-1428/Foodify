@@ -1,5 +1,5 @@
-import { Account, Avatars, Client, Databases, ID, Query } from "react-native-appwrite";
-import { AppwriteCustomizationCollectionId, AppwriteDBId, AppwriteMenuCollectionCategoriesId, AppwriteProjectId, AppwriteURLEndpoint, AppwriteUserCollectionId } from "./Environment.constants";
+import { Account, Avatars, Client, Databases, ID, Query, Storage } from "react-native-appwrite";
+import { AppwriteBucketId, AppwriteCategoriesCollectionId, AppwriteCustomizationCollectionId, AppwriteDBId, AppwriteMenuCollectionId, AppwriteMenuCustomizationsId, AppwriteProjectId, AppwriteURLEndpoint, AppwriteUserCollectionId } from "./Environment.constants";
 import { CreateUserPrams, SignInParams } from "@/type";
 
 export const appwriteConfig = {
@@ -7,10 +7,12 @@ export const appwriteConfig = {
     endpoint: AppwriteURLEndpoint,
     projectId: AppwriteProjectId,
     databaseId: AppwriteDBId,
+    bucketId: AppwriteBucketId,
     userCollectionId: AppwriteUserCollectionId,
-    categoriesCollectionId: AppwriteUserCollectionId,
-    menuCollectionId: AppwriteMenuCollectionCategoriesId,
-    customizationCollectionId: AppwriteCustomizationCollectionId,
+    categoriesCollectionId: AppwriteCategoriesCollectionId,
+    menuCollectionId: AppwriteMenuCollectionId,
+    customizationsCollectionId: AppwriteCustomizationCollectionId,
+    menuCustomizationsCollectionId: AppwriteMenuCustomizationsId
 
 }
 
@@ -24,7 +26,7 @@ client
 export const account  = new Account(client); 
 export const databases = new Databases(client); 
 export const avatar = new Avatars(client);
-
+export const storage = new Storage(client)
 export const createUser = async ({email,name,password}:CreateUserPrams) => {
     try {
         const newAccount = await account.create(ID.unique(),email,password,name);
