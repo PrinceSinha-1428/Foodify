@@ -1,11 +1,11 @@
-import CustomButton from '@/Components/CustomButton'
-import CustomInput from '@/Components/CustomInput'
 import { images } from '@/constants'
-import { Slot } from 'expo-router'
-import { View, Text, KeyboardAvoidingView, Platform, ScrollView, Dimensions, ImageBackground, Image } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import useAuthStore from '@/store/auth.store'
+import { Redirect, Slot } from 'expo-router'
+import { View, KeyboardAvoidingView, Platform, ScrollView, Dimensions, ImageBackground, Image } from 'react-native'
 
 export default function _AuthLayout() {
+  const {isAuthenticated} = useAuthStore();
+  if(isAuthenticated) return <Redirect href={'/'} />
   return (
    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
     <ScrollView className='bg-white h-full' keyboardShouldPersistTaps='handled'>
