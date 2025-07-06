@@ -24,7 +24,7 @@ export default function Index() {
                     <Image source={item.image} resizeMode='contain' className="size-full" />
                   </View>
                   <View className={cn("offer-card__info", isEven ? 'pl-10' : 'pr-10')}>
-                  <Text className="h1-bold text-white font-quicksand-bold text-4xl leading-tight">{item.title}</Text>
+                  <Text className="h1-bold text-white font-quicksand-bold text-3xl leading-tight">{item.title}</Text>
                   <Image source={images.arrowRight} className="size-10" resizeMode='contain' tintColor={"#ffffff"}/>
                   </View>
                 </Fragment>
