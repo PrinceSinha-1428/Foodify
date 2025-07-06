@@ -13,8 +13,7 @@ export default function _AuthLayout() {
         <ImageBackground source={images.loginGraphic} className='size-full rounded-b-lg' resizeMode='stretch'/>
         <Image source={images.logo} className='self-center size-48 absolute -bottom-16 z-10' />
       </View>
-      <CustomInput placeholder='Enter Your Email' value={''} onChangeText={(text) => {}} label='Email' keyboardType='email-address'/>
-      <CustomButton/>
+      <Slot/>
     </ScrollView>
    </KeyboardAvoidingView>
   )
