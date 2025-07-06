@@ -1,13 +1,16 @@
 import { Account, Avatars, Client, Databases, ID, Query } from "react-native-appwrite";
-import { AppwriteDBId, AppwriteProjectId, AppwriteURLEndpoint, AppwriteUserCollectionId } from "./Environment.constants";
+import { AppwriteCustomizationCollectionId, AppwriteDBId, AppwriteMenuCollectionCategoriesId, AppwriteProjectId, AppwriteURLEndpoint, AppwriteUserCollectionId } from "./Environment.constants";
 import { CreateUserPrams, SignInParams } from "@/type";
 
 export const appwriteConfig = {
-    endpoint: AppwriteURLEndpoint!,
-    projectId: AppwriteProjectId!,
-    databaseId: AppwriteDBId!,
     platform: "com.pks.foodify",
-    userCollectionId: AppwriteUserCollectionId!
+    endpoint: AppwriteURLEndpoint,
+    projectId: AppwriteProjectId,
+    databaseId: AppwriteDBId,
+    userCollectionId: AppwriteUserCollectionId,
+    categoriesCollectionId: AppwriteUserCollectionId,
+    menuCollectionId: AppwriteMenuCollectionCategoriesId,
+    customizationCollectionId: AppwriteCustomizationCollectionId,
 
 }
 
