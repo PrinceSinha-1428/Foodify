@@ -8,6 +8,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import cn from 'clsx'
 import MenuCard from "@/Components/MenuCard";
 import { MenuItem } from "@/type";
+import SearchBar from "@/Components/SearchBar";
+import Filter from "@/Components/Filter";
 
 const search = () => {
   const { category, query } = useLocalSearchParams<{
@@ -16,7 +18,7 @@ const search = () => {
   }>();
   const { data, refetch, loading } = useAppwrite({
     fn: getMenu,
-    params: { category, query, limit: 6 },
+    params: { category, query, limit: 6 ,},
   });
   const { data: categories } = useAppwrite({ fn: getCategory });
   useEffect(() => {
@@ -53,8 +55,8 @@ const search = () => {
               </View>
               <CartButton />
             </View>
-            <Text>Search Input</Text>
-            <Text>Filter</Text>
+            <SearchBar/>
+            <Filter categories={categories!}/>
           </View>
         )}
         ListEmptyComponent={() => !loading && <Text>No Results</Text>}

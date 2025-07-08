@@ -1,6 +1,6 @@
 import { Account, Avatars, Client, Databases, ID, Query, Storage } from "react-native-appwrite";
 import { AppwriteBucketId, AppwriteCategoriesCollectionId, AppwriteCustomizationCollectionId, AppwriteDBId, AppwriteMenuCollectionId, AppwriteMenuCustomizationsId, AppwriteProjectId, AppwriteURLEndpoint, AppwriteUserCollectionId } from "./Environment.constants";
-import { CreateUserPrams, GetMenuParams, SignInParams } from "@/type";
+import { Category, CreateUserPrams, GetMenuParams, SignInParams } from "@/type";
 
 export const appwriteConfig = {
     platform: "com.pks.foodify",
@@ -91,7 +91,8 @@ export const getCategory = async () => {
         const categories = await databases.listDocuments(
             appwriteConfig.databaseId,
             appwriteConfig.categoriesCollectionId
-        )
+        );
+        return categories.documents as Category[];
     } catch (error) {
         throw new Error(error as string)
     }
