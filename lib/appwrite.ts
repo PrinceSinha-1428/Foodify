@@ -1,6 +1,6 @@
 import { Account, Avatars, Client, Databases, ID, Query, Storage } from "react-native-appwrite";
 import { AppwriteBucketId, AppwriteCategoriesCollectionId, AppwriteCustomizationCollectionId, AppwriteDBId, AppwriteMenuCollectionId, AppwriteMenuCustomizationsId, AppwriteProjectId, AppwriteURLEndpoint, AppwriteUserCollectionId } from "./Environment.constants";
-import { CreateUserPrams, SignInParams } from "@/type";
+import { CreateUserPrams, GetMenuParams, SignInParams } from "@/type";
 
 export const appwriteConfig = {
     platform: "com.pks.foodify",
@@ -68,4 +68,31 @@ export const getCurrentUser = async() => {
   } catch (error) {
     throw new Error(error as string)
   }
+}
+
+export const getMenu = async ({category,query}:GetMenuParams) => {
+    try {
+        const queries: string[] = [];
+        if(category) queries.push(Query.equal('categories',category));
+        if(query) queries.push(Query.search('name',query));
+        const menus = await databases.listDocuments(
+            appwriteConfig.databaseId,
+            AppwriteMenuCollectionId,
+            queries
+        );
+        return menus.documents;
+    } catch (error) {
+        throw new Error(error as string)
+    }
+}
+
+export const getCategory = async () => {
+    try {
+        const categories = await databases.listDocuments(
+            appwriteConfig.databaseId,
+            appwriteConfig.categoriesCollectionId
+        )
+    } catch (error) {
+        throw new Error(error as string)
+    }
 }
